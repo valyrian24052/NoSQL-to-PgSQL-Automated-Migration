@@ -5,6 +5,7 @@ from input import Mongoconnstr
 
 
 def main():
+    
     schema = get_mongo_schema(Mongoconnstr)
 
     for table in schema.keys():
