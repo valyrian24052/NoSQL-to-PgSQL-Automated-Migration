@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-from input import pgconnstr, Mongoconnstr,timediff
+from input import pgconnstr, Mongoconnstr,timediff,type
 
 
 current_time = datetime.now()
@@ -11,17 +11,30 @@ end_time = current_time
 Start_time = end_time - timedelta(minutes=timediff)
 
 
-def getCollectionFromMongo(collection_name, start_time=Start_time, end_time=end_time):
+def getCollectionFromMongo(collection_name, timediff=timediff):
+    
+    current_time = datetime.now()
+    end_time = current_time 
+    Start_time = end_time - timedelta(minutes=timediff)
+    
+    if type=="incremental":
+        query = {
+        '$or': [
+            {'createdAt': {'$gte': Start_time, '$lt': end_time}},
+            {'updatedAt': {'$gte': Start_time, '$lt': end_time}}
+        ]
+        }
+        
+    else:
+        query={}
+    
+    
     uri = pgconnstr
     client = MongoClient(uri)
     db = client['qa']
     collection = db[collection_name]
-    query = {
-        '$or': [
-            {'createdAt': {'$gte': start_time, '$lt': end_time}},
-            {'updatedAt': {'$gte': start_time, '$lt': end_time}}
-        ]
-    }
+    
+    
 
     cursor = collection.find()
     df = pd.DataFrame(cursor)
