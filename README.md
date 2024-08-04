@@ -12,7 +12,7 @@ This project is designed to migrate data from a MongoDB database to a PostgreSQL
 
 1. Clone the repository to your local machine:
     ```bash
-    git clone https://github.com/your-repo/mongo-to-postgres-migration.git
+    https://github.com/valyrian24052/NoSQL-to-PgSQL-Automated-Migration.git
     cd mongo-to-postgres-migration
     ```
 
