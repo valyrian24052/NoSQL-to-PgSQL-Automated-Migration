@@ -1,6 +1,8 @@
 # MongoDB to PostgreSQL Data Migration
 
 This project is designed to migrate data from a MongoDB database to a PostgreSQL database. The script fetches the schema from MongoDB, processes the data, and inserts it into PostgreSQL. The process can be configured to run one-time or incrementally at specified intervals.
+## Directory Structure
+![image](https://github.com/user-attachments/assets/89c0fb6a-5af9-4a8c-8625-87ab8426e195)
 
 ## Prerequisites
 
